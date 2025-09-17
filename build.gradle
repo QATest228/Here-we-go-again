@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:7.10.0",
+            "org.junit.jupiter:junit-jupiter:5.9.3"
+    )
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Если нужно — принудительно подтянуть безопасные версии
+        force "io.netty:netty-common:4.1.119.Final"
+        force "io.netty:netty-codec-http:4.1.119.Final"
+        force "io.netty:netty-handler:4.1.119.Final"
+        force "org.asynchttpclient:async-http-client:2.13.0"
+    }
+}
