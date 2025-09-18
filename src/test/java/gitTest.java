@@ -12,7 +12,7 @@ public class gitTest {
         Configuration.holdBrowserOpen = true;
         Configuration.browserSize = "1920x1080";
         open("https://duckduckgo.com/");
-        $("[name=q]").setValue("текст").pressEnter();
+        $("[name=q]").setValue("вагиф").pressEnter();
         $(".react-results--main").shouldHave(text("Текст"));
 
     }
